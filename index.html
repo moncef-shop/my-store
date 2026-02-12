@@ -1,48 +1,75 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moncef Shop - Casque Pro</title>
+    <title>Moncef Shop - طلب المنتج</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; text-align: center; }
-        .container { max-width: 500px; margin: 20px auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .badge { background: #ff4757; color: white; padding: 5px 15px; border-radius: 50px; font-size: 14px; font-weight: bold; }
-        h1 { color: #2f3542; margin: 15px 0; }
-        .price { font-size: 28px; color: #2ecc71; font-weight: bold; margin: 10px 0; }
-        .old-price { text-decoration: line-through; color: #a4b0be; font-size: 18px; }
-        img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
-        .features { text-align: right; margin: 20px 0; padding: 0 20px; }
-        .features li { list-style: none; margin-bottom: 10px; color: #57606f; }
-        .features li::before { content: "✅ "; }
-        .btn-whatsapp { background-color: #25D366; color: white; padding: 18px; border-radius: 12px; text-decoration: none; display: block; font-size: 20px; font-weight: bold; transition: 0.3s; }
-        .btn-whatsapp:hover { background-color: #128C7E; transform: scale(1.02); }
-        .shipping { color: #e67e22; font-weight: bold; margin-top: 15px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 20px auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .product-info { padding: 20px; text-align: center; }
+        img { width: 100%; max-height: 300px; object-fit: cover; border-bottom: 2px solid #eee; }
+        h1 { color: #333; font-size: 24px; margin: 10px 0; }
+        .price { color: #2ecc71; font-size: 26px; font-weight: bold; margin-bottom: 10px; }
+        .form-section { background: #f9f9f9; padding: 25px; border-top: 2px solid #eee; }
+        .form-section h2 { font-size: 20px; margin-bottom: 20px; color: #444; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        .btn-submit { background-color: #e67e22; color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background-color: #d35400; }
+        .features-list { text-align: right; padding: 0 20px; margin-bottom: 20px; color: #666; }
+        .shipping-tag { background: #fff3cd; color: #856404; padding: 10px; text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <span class="badge">عرض محدود: خصم 40%</span>
-    <h1>Casque Bluetooth Pro V5.3</h1>
+    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" alt="Casque">
     
-    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Casque">
-
-    <div class="price">199 DH <span class="old-price">350 DH</span></div>
-    
-    <div class="features">
-        <li>صوت عالي الدقة (Hi-Fi)</li>
-        <li>بطارية تدوم لـ 20 ساعة</li>
-        <li>مريح للأذنين للاستعمال الطويل</li>
-        <li>متوافق مع جميع الهواتف</li>
+    <div class="product-info">
+        <div class="shipping-tag">🚚 التوصيل بالمجان والدفع عند الاستلام</div>
+        <h1>Casque Bluetooth Pro V5.3</h1>
+        <div class="price">199 درهم فقط</div>
+        
+        <ul class="features-list">
+            <li>✅ صوت نقي وعالي الدقة</li>
+            <li>✅ ميكروفون مدمج للمكالمات</li>
+            <li>✅ شحن سريع يدوم طويلاً</li>
+        </ul>
     </div>
 
-    <p class="shipping">🚚 التوصيل بالمجان في جميع مدن المغرب</p>
-
-    <a href="https://wa.me/212622855275?text=سلام، بغيت نشري هاد الكاسك بـ 199 درهم" class="btn-whatsapp">
-        اطلب الآن عبر واتساب
-    </a>
+    <div class="form-section">
+        <h2>أدخل معلوماتك للطلب:</h2>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="الاسم الكامل" required>
+            <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+            <input type="text" id="city" placeholder="المدينة" required>
+            <input type="text" id="address" placeholder="العنوان السكني" required>
+            
+            <button type="submit" class="btn-submit">تأكيد الطلب الآن</button>
+        </form>
+    </div>
 </div>
+
+<script>
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // جمع المعلومات من الفورم
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const city = document.getElementById('city').value;
+        const address = document.getElementById('address').value;
+        
+        // النمرة ديالك (بدلها إيلا بغيتي)
+        const myNumber = "212622855275"; 
+        
+        // وجاد الميساج للواتساب
+        const message = `طلب جديد لـ Casque Pro:%0A- الاسم: ${name}%0A- الهاتف: ${phone}%0A- المدينة: ${city}%0A- العنوان: ${address}`;
+        
+        // صيفط الكليان للواتساب بالميساج واجد
+        window.location.href = `https://wa.me/${myNumber}?text=${message}`;
+    });
+</script>
 
 </body>
 </html>
